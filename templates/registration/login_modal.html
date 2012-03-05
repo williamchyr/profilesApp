@@ -1,9 +1,8 @@
 <html>
     <head>
         <link rel="stylesheet" type="text/css" media="screen" href="/static/css/style.css" />
-        <link rel="stylesheet" type="text/css" media="screen" href="/static/css/jqModal.css" />
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-        <script type="text/javascript" src="/static/js/jqModal.js"></script>
+
     </head>
 
     <body>
@@ -12,10 +11,12 @@
     <div id="error_message"></div>
     <form method="post" action="/accounts/authenticate/?next={{ next|default:"/" }}">
     {% csrf_token %}	
-    username: <input type="text" name="username" /><br />
-    Password: <input type="password" name="password" />
+    username: <input type="text" name="username"/><br />
+    Password: <input type="password" name="password" id="password" />
     <input type="submit" id="submit-button" value="Log in" />
     </form>
+    
+    
     
     <script>
             $("form").submit(function () {
@@ -26,10 +27,11 @@
 		{
                     if (data.logged_in=='yes') //if correct login detail
                     {
-                          document.location="/";
+                          document.location="?next={{request.path}}";
                     } else // if incorrect login detail
                     {
-                        $("#error_message").text(data.message);
+                        $("#password").val('');
+                        $("#error_message").text(data.message).fadeIn();
                     }
 		},
 		 "json");                
@@ -40,6 +42,7 @@
     
     <p>If you don't have an account, you can <a href="/accounts/register/">sign up</a> for one.</p>
     <p><a href="/accounts/password/reset">Forgot your password?</a></p>
+    <a href="#" class="jqmClose">Close</a>
     </body>
 </html>
 

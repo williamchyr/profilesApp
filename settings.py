@@ -1,4 +1,4 @@
-# Django settings for profilesApp project.
+#Django settings for profilesApp project.
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -72,6 +72,7 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    "/Users/willychyr/Code/djcode/profilesApp/static",
 )
 
 # List of finder classes that know how to find static files in
@@ -106,6 +107,15 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    "/Users/willychyr/Code/djcode/profilesApp/templates/",
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.core.context_processors.auth",
+    "django.core.context_processors.debug",
+    "django.core.context_processors.i18n",
+    "django.core.context_processors.media",
+    "django.core.context_processors.request",
 )
 
 INSTALLED_APPS = (
@@ -117,6 +127,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
+    'django.contrib.humanize',
     'registration',
     'profiles',
 )
